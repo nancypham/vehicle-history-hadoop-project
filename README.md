@@ -9,3 +9,9 @@ A .csv dataset with a history report of various vehicles.
 ## Output
 A MapReduce program to produce a report of the total number of accidents per make and
 year of the car.
+
+## Shell scripts for execution
+### Bash
+```
+cat data.csv | python src/autoinc_mapper1.py | sort | python src/autoinc_reducer1.py | python src/autoinc_mapper2.py | sort | python src/autoinc_reducer2.py
+```
