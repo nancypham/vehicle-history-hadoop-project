@@ -1,0 +1,32 @@
+root@ec079ff08acc:/tmp# hadoop jar hadoop-streaming-3.2.1.jar \
+> -mapper /user/root/input/autoinc_mapper1.py \
+> -reducer /user/root/input/autoinc_reducer1.py \
+> -input /input/data.csv \
+> -output /output/all_accidents
+packageJobJar: [/tmp/hadoop-unjar1319083726810848557/] [] /tmp/streamjob6399484568031826966.jar tmpDir=null
+2021-11-26 05:10:15,060 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.5:8032
+2021-11-26 05:10:15,412 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.4:10200
+2021-11-26 05:10:15,462 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.5:8032
+2021-11-26 05:10:15,463 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.4:10200
+2021-11-26 05:10:15,687 ERROR streaming.StreamJob: Error Launching job : /tmp (is not a directory)
+	at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkIsDirectory(FSPermissionChecker.java:638)
+	at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkSimpleTraverse(FSPermissionChecker.java:629)
+	at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkTraverse(FSPermissionChecker.java:604)
+	at org.apache.hadoop.hdfs.server.namenode.FSDirectory.checkTraverse(FSDirectory.java:1828)
+	at org.apache.hadoop.hdfs.server.namenode.FSDirectory.checkTraverse(FSDirectory.java:1846)
+	at org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:684)
+	at org.apache.hadoop.hdfs.server.namenode.FSDirMkdirOp.mkdirs(FSDirMkdirOp.java:50)
+	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:3233)
+	at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1145)
+	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.mkdirs(ClientNamenodeProtocolServerSideTranslatorPB.java:720)
+	at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
+	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:528)
+	at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:1070)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:999)
+	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:927)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1730)
+	at org.apache.hadoop.ipc.Server$Handler.run(Server.java:2915)
+
+Streaming Command Failed!
