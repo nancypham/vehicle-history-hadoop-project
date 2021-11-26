@@ -15,8 +15,8 @@ def mapper():
         value = 1
         print(f'{key}\t{value}')
 
-if __name__ == '__main__':
-     mapper()
+# if __name__ == '__main__':
+#      mapper()
 
 '''
 Execution log:

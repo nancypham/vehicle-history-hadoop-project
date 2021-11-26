@@ -34,8 +34,8 @@ def reducer():
     # Output the last group if needed
     flush(current_make_year, count)
 
-if __name__ == '__main__':    
-    reducer()
+# if __name__ == '__main__':    
+#     reducer()
 
 '''
 Execution log:

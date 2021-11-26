@@ -2,21 +2,21 @@
 
 import sys
 
-def mapper():
-    '''
-    Reads input data and propagates data. Returns print of key and value
-    
-    Output key: vin_number
-    Output value: incident_type, make, year
-    '''
-    for line in sys.stdin:
-        record = line.strip().split(',')
-        key = record[2].strip()
-        value = record[1].strip(), record[3].strip(), record[5].strip()
-        print(f'{key}\t{value}')
+# def mapper():
+'''
+Reads input data and propagates data. Returns print of key and value
 
-if __name__ == '__main__':
-     mapper()
+Output key: vin_number
+Output value: incident_type, make, year
+'''
+for line in sys.stdin:
+    record = line.strip().split(',')
+    key = record[2].strip()
+    value = record[1].strip(), record[3].strip(), record[5].strip()
+    print(f'{key}\t{value}')
+
+# if __name__ == '__main__':
+#      mapper()
 
 '''
 Execution log:
