@@ -1,32 +1,85 @@
-root@ec079ff08acc:/tmp# hadoop jar hadoop-streaming-3.2.1.jar \
-> -mapper /user/root/input/autoinc_mapper1.py \
-> -reducer /user/root/input/autoinc_reducer1.py \
-> -input /input/data.csv \
-> -output /output/all_accidents
-packageJobJar: [/tmp/hadoop-unjar1319083726810848557/] [] /tmp/streamjob6399484568031826966.jar tmpDir=null
-2021-11-26 05:10:15,060 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.5:8032
-2021-11-26 05:10:15,412 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.4:10200
-2021-11-26 05:10:15,462 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.18.0.5:8032
-2021-11-26 05:10:15,463 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.18.0.4:10200
-2021-11-26 05:10:15,687 ERROR streaming.StreamJob: Error Launching job : /tmp (is not a directory)
-	at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkIsDirectory(FSPermissionChecker.java:638)
-	at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkSimpleTraverse(FSPermissionChecker.java:629)
-	at org.apache.hadoop.hdfs.server.namenode.FSPermissionChecker.checkTraverse(FSPermissionChecker.java:604)
-	at org.apache.hadoop.hdfs.server.namenode.FSDirectory.checkTraverse(FSDirectory.java:1828)
-	at org.apache.hadoop.hdfs.server.namenode.FSDirectory.checkTraverse(FSDirectory.java:1846)
-	at org.apache.hadoop.hdfs.server.namenode.FSDirectory.resolvePath(FSDirectory.java:684)
-	at org.apache.hadoop.hdfs.server.namenode.FSDirMkdirOp.mkdirs(FSDirMkdirOp.java:50)
-	at org.apache.hadoop.hdfs.server.namenode.FSNamesystem.mkdirs(FSNamesystem.java:3233)
-	at org.apache.hadoop.hdfs.server.namenode.NameNodeRpcServer.mkdirs(NameNodeRpcServer.java:1145)
-	at org.apache.hadoop.hdfs.protocolPB.ClientNamenodeProtocolServerSideTranslatorPB.mkdirs(ClientNamenodeProtocolServerSideTranslatorPB.java:720)
-	at org.apache.hadoop.hdfs.protocol.proto.ClientNamenodeProtocolProtos$ClientNamenodeProtocol$2.callBlockingMethod(ClientNamenodeProtocolProtos.java)
-	at org.apache.hadoop.ipc.ProtobufRpcEngine$Server$ProtoBufRpcInvoker.call(ProtobufRpcEngine.java:528)
-	at org.apache.hadoop.ipc.RPC$Server.call(RPC.java:1070)
-	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:999)
-	at org.apache.hadoop.ipc.Server$RpcCall.run(Server.java:927)
+root@df39d6169e90:/tmp# hadoop jar hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py -file autoinc_reducer1.py -reducer autoinc_reducer1.py -input /input/data.csv -output /output/all_accidents
+2021-11-27 19:46:28,656 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar5819890834651906367/] [] /tmp/streamjob2034706581135028201.jar tmpDir=null
+2021-11-27 19:46:31,183 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
+2021-11-27 19:46:31,739 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
+2021-11-27 19:46:31,828 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
+2021-11-27 19:46:31,828 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
+2021-11-27 19:46:32,388 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/root/.staging/job_1638039735652_0001
+2021-11-27 19:46:32,689 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:46:32,917 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:46:32,962 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:46:33,118 INFO mapreduce.JobSubmitter: Cleaning up the staging area /tmp/hadoop-yarn/staging/root/.staging/job_1638039735652_0001
+2021-11-27 19:46:33,136 ERROR streaming.StreamJob: Error Launching job : Input path does not exist: hdfs://namenode:9000/input/data.csv
+Streaming Command Failed!
+root@df39d6169e90:/tmp# hadoop jar hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py -file autoinc_reducer1.py -reducer autoinc_reducer1.py -input /user/root/input/data.csv -output /output/all_accidents
+2021-11-27 19:47:08,098 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar2452785903685348455/] [] /tmp/streamjob3450734247344676540.jar tmpDir=null
+2021-11-27 19:47:10,714 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
+2021-11-27 19:47:11,153 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
+2021-11-27 19:47:11,212 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
+2021-11-27 19:47:11,214 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
+2021-11-27 19:47:11,646 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/root/.staging/job_1638039735652_0002
+2021-11-27 19:47:11,909 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:47:12,130 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:47:12,180 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:47:12,332 INFO mapred.FileInputFormat: Total input files to process : 1
+2021-11-27 19:47:12,411 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:47:12,482 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:47:12,522 INFO mapreduce.JobSubmitter: number of splits:2
+2021-11-27 19:47:12,963 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-11-27 19:47:13,013 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1638039735652_0002
+2021-11-27 19:47:13,013 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-11-27 19:47:13,471 INFO conf.Configuration: resource-types.xml not found
+2021-11-27 19:47:13,472 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-11-27 19:47:14,314 INFO impl.YarnClientImpl: Submitted application application_1638039735652_0002
+2021-11-27 19:47:14,448 INFO mapreduce.Job: The url to track the job: http://resourcemanager:8088/proxy/application_1638039735652_0002/
+2021-11-27 19:47:14,453 INFO mapreduce.Job: Running job: job_1638039735652_0002
+2021-11-27 19:47:31,887 INFO mapreduce.Job: Job job_1638039735652_0002 running in uber mode : false
+2021-11-27 19:47:31,896 INFO mapreduce.Job:  map 0% reduce 0%
+2021-11-27 19:47:46,642 INFO mapreduce.Job: Task Id : attempt_1638039735652_0002_m_000000_0, Status : FAILED
+Error: java.lang.RuntimeException: Error in configuring object
+	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:113)
+	at org.apache.hadoop.util.ReflectionUtils.setConf(ReflectionUtils.java:79)
+	at org.apache.hadoop.util.ReflectionUtils.newInstance(ReflectionUtils.java:137)
+	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:462)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:349)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:174)
 	at java.security.AccessController.doPrivileged(Native Method)
 	at javax.security.auth.Subject.doAs(Subject.java:422)
 	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1730)
-	at org.apache.hadoop.ipc.Server$Handler.run(Server.java:2915)
-
-Streaming Command Failed!
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:168)
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:110)
+	... 9 more
+Caused by: java.lang.RuntimeException: Error in configuring object
+	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:113)
+	at org.apache.hadoop.util.ReflectionUtils.setConf(ReflectionUtils.java:79)
+	at org.apache.hadoop.util.ReflectionUtils.newInstance(ReflectionUtils.java:137)
+	at org.apache.hadoop.mapred.MapRunner.configure(MapRunner.java:38)
+	... 14 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:110)
+	... 17 more
+Caused by: java.lang.RuntimeException: configuration exception
+	at org.apache.hadoop.streaming.PipeMapRed.configure(PipeMapRed.java:222)
+	at org.apache.hadoop.streaming.PipeMapper.configure(PipeMapper.java:66)
+	... 22 more
+Caused by: java.io.IOException: Cannot run program "/tmp/hadoop-root/nm-local-dir/usercache/root/appcache/application_1638039735652_0002/container_e02_1638039735652_0002_01_000002/./autoinc_mapper1.py": error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
+	at org.apache.hadoop.streaming.PipeMapRed.configure(PipeMapRed.java:209)
+	... 23 more
+Caused by: java.io.IOException: error=2, No such file or directory
+	at java.lang.UNIXProcess.forkAndExec(Native Method)
+	at java.lang.UNIXProcess.<init>(UNIXProcess.java:247)
+	at java.lang.ProcessImpl.start(ProcessImpl.java:134)
+	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
+	... 24 more
