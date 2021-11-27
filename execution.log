@@ -1,18 +1,7 @@
-root@df39d6169e90:/tmp# hadoop jar hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py -file autoinc_reducer1.py -reducer autoinc_reducer1.py -input /input/data.csv -output /output/all_accidents
-2021-11-27 19:46:28,656 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
-packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar5819890834651906367/] [] /tmp/streamjob2034706581135028201.jar tmpDir=null
-2021-11-27 19:46:31,183 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
-2021-11-27 19:46:31,739 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
-2021-11-27 19:46:31,828 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
-2021-11-27 19:46:31,828 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
-2021-11-27 19:46:32,388 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/root/.staging/job_1638039735652_0001
-2021-11-27 19:46:32,689 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:46:32,917 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:46:32,962 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:46:33,118 INFO mapreduce.JobSubmitter: Cleaning up the staging area /tmp/hadoop-yarn/staging/root/.staging/job_1638039735652_0001
-2021-11-27 19:46:33,136 ERROR streaming.StreamJob: Error Launching job : Input path does not exist: hdfs://namenode:9000/input/data.csv
-Streaming Command Failed!
-root@df39d6169e90:/tmp# hadoop jar hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py -file autoinc_reducer1.py -reducer autoinc_reducer1.py -input /user/root/input/data.csv -output /output/all_accidents
+root@df39d6169e90:/tmp# hadoop jar hadoop-streaming-3.2.1.jar \
+> -file autoinc_mapper1.py -mapper autoinc_mapper1.py \
+> -file autoinc_reducer1.py -reducer autoinc_reducer1.py \ 
+> -input /user/root/input/data.csv -output /output/all_accidents
 2021-11-27 19:47:08,098 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
 packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar2452785903685348455/] [] /tmp/streamjob3450734247344676540.jar tmpDir=null
 2021-11-27 19:47:10,714 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
