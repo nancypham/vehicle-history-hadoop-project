@@ -2,13 +2,16 @@
 
 (base) ➜  docker-hadoop git:(master) ✗ docker-compose up -d
 
-(base) ➜  docker-hadoop git:(master) ✗ docker container ls
-CONTAINER ID   IMAGE                                                    COMMAND                  CREATED         STATUS                            PORTS                                            NAMES
-dc2cefd0b999   bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8     "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   8188/tcp                                         historyserver
-c6089b538688   bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   9864/tcp                                         datanode
-6d9563ae374b   bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8       "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   8042/tcp                                         nodemanager
-20ae40e43e60   bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8   "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   8088/tcp                                         resourcemanager
-ec079ff08acc   bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   0.0.0.0:9000->9000/tcp, 0.0.0.0:9870->9870/tcp   namenode
+(base) ➜  docker-hadoop git:(master) ✗ docker ps
+CONTAINER ID   IMAGE                                                    COMMAND                  CREATED       STATUS                        PORTS                                            NAMES
+3c26b4f67da6   wodby/adminer:latest                                     "/entrypoint.sh php …"   5 days ago    Up 5 days (healthy)           0.0.0.0:32767->9000/tcp                          adminer
+6b8cbc67ed70   springboard-airflow_airflow                              "./start-airflow.sh"     5 days ago    Up 5 days (healthy)           0.0.0.0:8080->8080/tcp                           airflow
+469a759d7538   springboard-airflow_postgres                             "docker-entrypoint.s…"   5 days ago    Up 5 days (healthy)           0.0.0.0:32769->5432/tcp                          postgres
+df39d6169e90   bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   2 weeks ago   Up 2 minutes (healthy)        0.0.0.0:9000->9000/tcp, 0.0.0.0:9870->9870/tcp   namenode
+a5ca99a72a5e   bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8   "/entrypoint.sh /run…"   2 weeks ago   Up About a minute (healthy)   8088/tcp                                         resourcemanager
+39d1586b4862   bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8       "/entrypoint.sh /run…"   2 weeks ago   Up 38 seconds (healthy)       8042/tcp                                         nodemanager
+c2541038a870   bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8     "/entrypoint.sh /run…"   2 weeks ago   Up 5 days (healthy)           8188/tcp                                         historyserver
+ef567c29522a   bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   2 weeks ago   Up 5 days (healthy)           9864/tcp                                         datanode
 
 (base) ➜  docker-hadoop git:(master) ✗ docker exec -it namenode /bin/bash
 
