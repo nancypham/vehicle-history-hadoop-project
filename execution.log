@@ -1,74 +1,127 @@
+(base) ➜  ~ cd springboard/docker/docker-hadoop 
+
+(base) ➜  docker-hadoop git:(master) ✗ docker-compose up -d
+
+(base) ➜  docker-hadoop git:(master) ✗ docker container ls
+CONTAINER ID   IMAGE                                                    COMMAND                  CREATED         STATUS                            PORTS                                            NAMES
+dc2cefd0b999   bde2020/hadoop-historyserver:2.0.0-hadoop3.2.1-java8     "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   8188/tcp                                         historyserver
+c6089b538688   bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   9864/tcp                                         datanode
+6d9563ae374b   bde2020/hadoop-nodemanager:2.0.0-hadoop3.2.1-java8       "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   8042/tcp                                         nodemanager
+20ae40e43e60   bde2020/hadoop-resourcemanager:2.0.0-hadoop3.2.1-java8   "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   8088/tcp                                         resourcemanager
+ec079ff08acc   bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8          "/entrypoint.sh /run…"   8 seconds ago   Up 6 seconds (health: starting)   0.0.0.0:9000->9000/tcp, 0.0.0.0:9870->9870/tcp   namenode
+
+(base) ➜  docker-hadoop git:(master) ✗ docker exec -it namenode /bin/bash
+
+root@df39d6169e90:/# ls -ll
+total 416
+-rw-r--r--   1 root root    325083 Feb  4  2020 KEYS
+-rwxrwxrwx   1  501 dialout   1038 Nov 26 04:19 autoinc_mapper1.py
+drwxr-xr-x   1 root root      4096 Feb  4  2020 bin
+drwxr-xr-x   2 root root      4096 Sep  8  2019 boot
+drwxr-xr-x   5 root root       340 Dec  7 03:42 dev
+-rwxr-xr-x   1 root root      4155 Feb  4  2020 entrypoint.sh
+drwxr-xr-x   1 root root      4096 Nov 27 19:01 etc
+drwxr-xr-x   3 root root      4096 Feb  4  2020 hadoop
+drwxr-xr-x   2 root root      4096 Feb  4  2020 hadoop-data
+drwxr-xr-x   2 root root      4096 Sep  8  2019 home
+drwxr-xr-x   1 root root      4096 Jan 30  2020 lib
+drwxr-xr-x   2 root root      4096 Jan 30  2020 lib64
+drwxr-xr-x   2 root root      4096 Jan 30  2020 media
+drwxr-xr-x   2 root root      4096 Jan 30  2020 mnt
+drwxr-xr-x   1 root root      4096 Feb  4  2020 opt
+dr-xr-xr-x 221 root root         0 Dec  7 03:42 proc
+drwx------   1 root root      4096 Feb  4  2020 root
+drwxr-xr-x   3 root root      4096 Jan 30  2020 run
+-rwxr-xr-x   1 root root       494 Feb  4  2020 run.sh
+drwxr-xr-x   1 root root      4096 Feb  4  2020 sbin
+drwxr-xr-x   2 root root      4096 Jan 30  2020 srv
+dr-xr-xr-x  13 root root         0 Dec  7 03:42 sys
+drwxrwxrwt   1 root root      4096 Dec  7 03:42 tmp
+drwxr-xr-x   1 root root      4096 Jan 30  2020 usr
+
+root@df39d6169e90:/# cd tmp
+root@df39d6169e90:/tmp# ls -ll
+total 200
+-rw-r--r-- 1 root root         0 Nov 29 19:06 -file
+-rwxrwxrwx 1  501 dialout   1420 Nov 26 04:36 autoinc_reducer1.py
+-rw-r--r-- 1 root root         4 Dec  7 03:42 hadoop-root-namenode.pid
+-rwxrwxrwx 1  501 dialout 176596 Nov 23 05:41 hadoop-streaming-3.2.1.jar
+drwxr-xr-x 1 root root      4096 Dec  7 03:42 hsperfdata_root
+drwxr-xr-x 2 root root      4096 Dec  1 23:11 jetty-0.0.0.0-9870-hdfs-_-any-4021001594275902674.dir
+drwxr-xr-x 2 root root      4096 Dec  7 03:42 jetty-0.0.0.0-9870-hdfs-_-any-5299024781836037661.dir
+drwxr-xr-x 2 root root      4096 Nov 27 19:01 jetty-0.0.0.0-9870-hdfs-_-any-6927075360318891683.dir
+
+root@df39d6169e90:/# mv /tmp/hadoop-streaming-3.2.1.jar hadoop-streaming-3.2.1.jar
+
+root@df39d6169e90:/# mv /tmp/autoinc_reducer1.py autoinc_reducer1.py
+
+root@df39d6169e90:/# ls -ll
+total 596
+-rw-r--r--   1 root root    325083 Feb  4  2020 KEYS
+-rwxrwxrwx   1  501 dialout   1038 Nov 26 04:19 autoinc_mapper1.py
+-rwx------   1  501 dialout   1420 Nov 26 04:36 autoinc_reducer1.py
+drwxr-xr-x   1 root root      4096 Feb  4  2020 bin
+drwxr-xr-x   2 root root      4096 Sep  8  2019 boot
+drwxr-xr-x   5 root root       340 Dec  7 03:42 dev
+-rwxr-xr-x   1 root root      4155 Feb  4  2020 entrypoint.sh
+drwxr-xr-x   1 root root      4096 Nov 27 19:01 etc
+drwxr-xr-x   3 root root      4096 Feb  4  2020 hadoop
+drwxr-xr-x   2 root root      4096 Feb  4  2020 hadoop-data
+-rwxrwxrwx   1  501 dialout 176596 Nov 23 05:41 hadoop-streaming-3.2.1.jar
+drwxr-xr-x   2 root root      4096 Sep  8  2019 home
+drwxr-xr-x   1 root root      4096 Jan 30  2020 lib
+drwxr-xr-x   2 root root      4096 Jan 30  2020 lib64
+drwxr-xr-x   2 root root      4096 Jan 30  2020 media
+drwxr-xr-x   2 root root      4096 Jan 30  2020 mnt
+drwxr-xr-x   1 root root      4096 Feb  4  2020 opt
+dr-xr-xr-x 219 root root         0 Dec  7 03:42 proc
+drwx------   1 root root      4096 Feb  4  2020 root
+drwxr-xr-x   3 root root      4096 Jan 30  2020 run
+-rwxr-xr-x   1 root root       494 Feb  4  2020 run.sh
+drwxr-xr-x   1 root root      4096 Feb  4  2020 sbin
+drwxr-xr-x   2 root root      4096 Jan 30  2020 srv
+dr-xr-xr-x  13 root root         0 Dec  7 03:42 sys
+drwxrwxrwt   1 root root      4096 Dec 13 00:13 tmp
+drwxr-xr-x   1 root root      4096 Jan 30  2020 usr
+drwxr-xr-x   1 root root      4096 Jan 30  2020 var
+
 root@df39d6169e90:/tmp# hadoop jar hadoop-streaming-3.2.1.jar \
 > -file autoinc_mapper1.py -mapper autoinc_mapper1.py \
 > -file autoinc_reducer1.py -reducer autoinc_reducer1.py \ 
 > -input /user/root/input/data.csv -output /output/all_accidents
-2021-11-27 19:47:08,098 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
-packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar2452785903685348455/] [] /tmp/streamjob3450734247344676540.jar tmpDir=null
-2021-11-27 19:47:10,714 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
-2021-11-27 19:47:11,153 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
-2021-11-27 19:47:11,212 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.6:8032
-2021-11-27 19:47:11,214 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.5:10200
-2021-11-27 19:47:11,646 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/root/.staging/job_1638039735652_0002
-2021-11-27 19:47:11,909 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:47:12,130 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:47:12,180 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:47:12,332 INFO mapred.FileInputFormat: Total input files to process : 1
-2021-11-27 19:47:12,411 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:47:12,482 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:47:12,522 INFO mapreduce.JobSubmitter: number of splits:2
-2021-11-27 19:47:12,963 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
-2021-11-27 19:47:13,013 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1638039735652_0002
-2021-11-27 19:47:13,013 INFO mapreduce.JobSubmitter: Executing with tokens: []
-2021-11-27 19:47:13,471 INFO conf.Configuration: resource-types.xml not found
-2021-11-27 19:47:13,472 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
-2021-11-27 19:47:14,314 INFO impl.YarnClientImpl: Submitted application application_1638039735652_0002
-2021-11-27 19:47:14,448 INFO mapreduce.Job: The url to track the job: http://resourcemanager:8088/proxy/application_1638039735652_0002/
-2021-11-27 19:47:14,453 INFO mapreduce.Job: Running job: job_1638039735652_0002
-2021-11-27 19:47:31,887 INFO mapreduce.Job: Job job_1638039735652_0002 running in uber mode : false
-2021-11-27 19:47:31,896 INFO mapreduce.Job:  map 0% reduce 0%
-2021-11-27 19:47:46,642 INFO mapreduce.Job: Task Id : attempt_1638039735652_0002_m_000000_0, Status : FAILED
-Error: java.lang.RuntimeException: Error in configuring object
-	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:113)
-	at org.apache.hadoop.util.ReflectionUtils.setConf(ReflectionUtils.java:79)
-	at org.apache.hadoop.util.ReflectionUtils.newInstance(ReflectionUtils.java:137)
-	at org.apache.hadoop.mapred.MapTask.runOldMapper(MapTask.java:462)
-	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:349)
-	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:174)
-	at java.security.AccessController.doPrivileged(Native Method)
-	at javax.security.auth.Subject.doAs(Subject.java:422)
-	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1730)
-	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:168)
-Caused by: java.lang.reflect.InvocationTargetException
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:110)
-	... 9 more
-Caused by: java.lang.RuntimeException: Error in configuring object
-	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:113)
-	at org.apache.hadoop.util.ReflectionUtils.setConf(ReflectionUtils.java:79)
-	at org.apache.hadoop.util.ReflectionUtils.newInstance(ReflectionUtils.java:137)
-	at org.apache.hadoop.mapred.MapRunner.configure(MapRunner.java:38)
-	... 14 more
-Caused by: java.lang.reflect.InvocationTargetException
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.lang.reflect.Method.invoke(Method.java:498)
-	at org.apache.hadoop.util.ReflectionUtils.setJobConf(ReflectionUtils.java:110)
-	... 17 more
-Caused by: java.lang.RuntimeException: configuration exception
-	at org.apache.hadoop.streaming.PipeMapRed.configure(PipeMapRed.java:222)
-	at org.apache.hadoop.streaming.PipeMapper.configure(PipeMapper.java:66)
-	... 22 more
-Caused by: java.io.IOException: Cannot run program "/tmp/hadoop-root/nm-local-dir/usercache/root/appcache/application_1638039735652_0002/container_e02_1638039735652_0002_01_000002/./autoinc_mapper1.py": error=2, No such file or directory
-	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1048)
-	at org.apache.hadoop.streaming.PipeMapRed.configure(PipeMapRed.java:209)
-	... 23 more
-Caused by: java.io.IOException: error=2, No such file or directory
-	at java.lang.UNIXProcess.forkAndExec(Native Method)
-	at java.lang.UNIXProcess.<init>(UNIXProcess.java:247)
-	at java.lang.ProcessImpl.start(ProcessImpl.java:134)
-	at java.lang.ProcessBuilder.start(ProcessBuilder.java:1029)
-	... 24 more
+
+root@df39d6169e90:/# hadoop jar hadoop-streaming-3.2.1.jar -file autoinc_mapper1.py -mapper autoinc_mapper1.py -file autoinc_reducer1.py -reducer autoinc_reducer1.py -input input/data.csv -output output/all_accidents
+2021-12-13 00:15:01,746 WARN streaming.StreamJob: -file option is deprecated, please use generic option -files instead.
+packageJobJar: [autoinc_mapper1.py, autoinc_reducer1.py, /tmp/hadoop-unjar4265304426929498030/] [] /tmp/streamjob7472897832734952095.jar tmpDir=null
+2021-12-13 00:15:03,964 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.5:8032
+2021-12-13 00:15:04,453 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.2:10200
+2021-12-13 00:15:04,515 INFO client.RMProxy: Connecting to ResourceManager at resourcemanager/172.19.0.5:8032
+2021-12-13 00:15:04,517 INFO client.AHSProxy: Connecting to Application History server at historyserver/172.19.0.2:10200
+2021-12-13 00:15:05,555 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/root/.staging/job_1638848582862_0001
+2021-12-13 00:15:06,054 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-12-13 00:15:06,308 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-12-13 00:15:06,372 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-12-13 00:15:06,524 INFO mapred.FileInputFormat: Total input files to process : 1
+2021-12-13 00:15:06,657 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-12-13 00:15:06,739 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-12-13 00:15:06,793 INFO mapreduce.JobSubmitter: number of splits:2
+2021-12-13 00:15:07,261 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-12-13 00:15:07,363 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1638848582862_0001
+2021-12-13 00:15:07,364 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-12-13 00:15:08,333 INFO conf.Configuration: resource-types.xml not found
+2021-12-13 00:15:08,334 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-12-13 00:15:09,511 INFO impl.YarnClientImpl: Submitted application application_1638848582862_0001
+2021-12-13 00:15:09,914 INFO mapreduce.Job: The url to track the job: http://resourcemanager:8088/proxy/application_1638848582862_0001/
+2021-12-13 00:15:09,937 INFO mapreduce.Job: Running job: job_1638848582862_0001
+2021-12-13 00:16:51,582 INFO retry.RetryInvocationHandler: java.io.IOException: DestHost:destPort resourcemanager:8032 , LocalHost:localPort df39d6169e90/172.19.0.3:0. Failed on local exception: java.io.IOException: Connection reset by peer, while invoking ApplicationClientProtocolPBClientImpl.getApplicationReport over null. Trying to failover immediately.
+2021-12-13 00:16:52,604 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 0 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:16:53,605 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 1 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:16:54,618 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 2 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:16:55,621 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 3 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:16:56,623 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 4 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:16:57,624 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 5 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:16:58,634 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 6 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:16:59,644 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 7 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:17:00,650 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 8 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:17:01,665 INFO ipc.Client: Retrying connect to server: resourcemanager/172.19.0.5:8032. Already tried 9 time(s); retry policy is RetryUpToMaximumCountWithFixedSleep(maxRetries=10, sleepTime=1000 MILLISECONDS)
+2021-12-13 00:17:02,266 INFO retry.RetryInvocationHandler: java.net.ConnectException: Call From df39d6169e90/172.19.0.3 to resourcemanager:8032 failed on connection exception: java.net.ConnectException: Connection refused; For more details see:  http://wiki.apache.org/hadoop/ConnectionRefused, while invoking ApplicationClientProtocolPBClientImpl.getApplicationReport over null after 1 failover attempts. Trying to failover after sleeping for 33555ms.
